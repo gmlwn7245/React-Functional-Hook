@@ -55,6 +55,7 @@ const MyContext = React.createContext(defaultValue);
 ```
 * Consumer은 Context의 변화를 구독하는 React 컴포넌트
 * 이 컴포넌트를 사용하면 함수 컴포넌트 안에서 context를 구독할 수 있음
+
 [Context]](https://ko.reactjs.org/docs/context.html "Context")
 
 ## 기본 Hook
