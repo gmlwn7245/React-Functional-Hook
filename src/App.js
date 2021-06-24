@@ -1,12 +1,27 @@
-import React, {Component ,useState, useEffect} from 'react';
+import React, {Component, useState, useEffect, useContext} from 'react';
 import './App.css';
 
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
 function App() {
   var [funcShow, setFuncShow] = useState(true);
   var [classShow, setClassShow] = useState(true);
 
-  return (
+  return (   
     <div className="container">
+      <ThemeContext.Provider value={themes}>
+       <Toolbar />
+      </ThemeContext.Provider>
       <h1>Hello World</h1>
       <input type="button" value="remove func" onClick={function(){
         setFuncShow(false);
@@ -19,6 +34,25 @@ function App() {
     </div>
   );
 }
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return (
+    <button id="btn" style={{ background: theme.light.background, color: theme.light.foreground }} >
+      I am styled by theme context!
+    </button>
+  );
+}
+
+
 
 var funcStyle1 = 'color:blue';
 var funcStyle2 = 'color:red';
